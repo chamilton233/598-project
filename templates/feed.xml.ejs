@@ -1,0 +1,15 @@
+<rss version="0.91">
+  <channel>
+    <title>My Blog</title>
+    <link><%= url %></link>
+    <description>A blog with interesting posts</description>
+    <language>en-us</language>
+    <% posts.forEach(function(post){ %>
+          <item>
+      <title><%= post.title %></title>
+      <link><%= post.link %></link>
+      <description><%= post.content.slice(0, 100) %></description>
+    </item>
+    <% }); %>
+  </channel>
+</rss>

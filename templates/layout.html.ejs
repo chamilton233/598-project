@@ -1,0 +1,30 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>My Blog: <%= title %></title>
+    <link type="text/css" rel="stylesheet" href="/blog.css">
+  </head>
+  <body>
+    <header>
+      <% if(locals.user) { %>
+        Welcome <%= user.username %>!
+        <% if(locals.user.role === "Author") { %>
+          <a href="/posts/new">Create a Post</a>
+          <a href="/signout">Sign Out</a>
+        <% } %>
+      <% } else { %>
+        <a href="/signin">Sign In</a> 
+        or
+        <a href="/signup">Sign Up</a>
+        or 
+        <a href="/picofday">pic</a>
+      <% } %>
+    </header>
+    <h1>My Blog</h1>
+    <div class="content">      
+      <%- post %>  
+      <%- list %>  
+    </div>
+    <script src="/blog.js"></script>
+  </body>
+</html>
