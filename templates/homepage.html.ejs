@@ -1,0 +1,8 @@
+<article>
+    <h2>Pick a day</h2>
+    <% array.forEach(function(arrays){%>
+    <% if (arrays != null){ %>
+    <h3><a href="/picofday/<%= arrays.date %>">
+        Date: <%=arrays.date %></a></h3>
+    <% }}); %>
+</article>

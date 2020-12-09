@@ -15,6 +15,9 @@ const createSession = require('./endpoints/create-session');
 const destroySession = require('./endpoints/destroy-session');
 const serveFeed = require('./endpoints/serve-feed.js');
 const servePicOfDay = require('./endpoints/post.js')
+const weather = require('./endpoints/weather.js')
+const newPlace = require('./endpoints/new-place');
+const createPlace = require('./endpoints/create-place');
 
 /** @module app 
  * The express application for our site
@@ -24,12 +27,16 @@ var app = express();
 app.use(loadSession);
 
 app.get('/', serveHomepage);
- app.get('/rss', serveFeed);
-app.get('/posts/new', authorsOnly, newPost);
-app.post('/posts', authorsOnly, loadBody, createPost);
+app.get('/rss', serveFeed);
+app.get('/posts/new/:date',  newPost);
+app.post('/posts/:date',  loadBody, createPost);
+app.get('/place/new',  newPlace);
+app.post('/place',  loadBody, createPlace);
 app.get('/posts/:id', showPost);
-app.get('/picofday', servePicOfDay)
+app.get('/picofday/:date', servePicOfDay)
 app.get('/signup', newUser);
+app.get('/weather', weather);
+app.get('/weather/:place', weather);
 app.post("/signup", loadBody, createUser);
 app.get('/signin', newSession);
 app.post("/signin", loadBody, createSession);

@@ -7,7 +7,7 @@ const templates = require('../templates');
  */
 function newPost(req, res) {
   var date = req.params.date;
-  var form = templates["new-post.html"]({date: date});
+  var form = templates["new-place.html"]();
   var html = templates["layout.html"]({
     post: form, 
     list: "", 

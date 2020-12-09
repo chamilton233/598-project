@@ -1,0 +1,9 @@
+
+        <h2>comments</h2>
+        <% array.forEach(function(arrays){%>
+        <% if (arrays != null){ %>
+        <h3>User: <%=arrays.User %></h3>
+        <p><%=arrays.Words%></p>
+        <% }}); %>
+        <h2><a href = "/posts/new/<%=date%>">Create a new post</a></h2>
+    </article>
