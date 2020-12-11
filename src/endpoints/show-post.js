@@ -10,7 +10,7 @@ function showPost(req, res) {
   // Determine the post ID
   const id = parseInt(req.params.id, 10);
   // Retreive the post from the database 
-  var post = db.prepare("SELECT * FROM posts WHERE id = ?").get(id);
+  var post = db.prepare("SELECT * FROM content").get(id);
   post.date = new Date(post.date);
   // Get all posts in the database
   var posts = db.prepare("SELECT * FROM posts ORDER BY date DESC").all();

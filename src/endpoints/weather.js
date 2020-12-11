@@ -23,14 +23,18 @@ function servePicOfDay(req, res){
         if(req.status == 200 && req.readyState == 4){      
           var response = JSON.parse(req.responseText);
             day = response.sol_keys;
-            result =day[5];
+            result =day[0];
             some = response[result]
+            if(typeof some !== 'undefined'){
            pic = templates["mars-weather.html"]({
            
               date: day,
               Pre: some.PRE,
               season: some.Season
           });
+        }else{
+            pic= "<p>Nasa's mars api is broken</p>";
+        }
           weatherur ="http://api.openweathermap.org/data/2.5/weather?q="
           weatherend ="&appid=234202b6d89aa2d6c5079d66f9d88eb3"
           if(typeof place !== 'undefined' )
@@ -49,8 +53,7 @@ function servePicOfDay(req, res){
                        max:(response.main.temp_max-273).toFixed(2),
                         pressure:response.main.pressure
                    });
-                   console.log(here)
-                  var html = templates['layout.html']({
+                                     var html = templates['layout.html']({
                     title: "Weather stuff",
                     post: here, 
                     list: pic, 
